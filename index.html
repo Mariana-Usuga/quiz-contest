@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="index.css">
+  <title>Title of the page</title>
+</head>
+<body>
+  <div id="btns">
+    <button id="play" class="btnPlay">Play!!</button>
+    <button id="configure" class="btnConfigure">Configure!!</button>
+  </div>
+
+<div class="wrapper">
+  <h2 id="writeAsks"></h2>
+  <form class="form" action="">
+    <!-- <div> -->
+      <label for="category" id="category">Category
+        <input type="text" id="category" name="category"/>
+      </label>
+      <label for="pregunta" id="ask">Ask
+        <input type="text" id="pregunta" name="ask"/>
+      </label>
+    <!-- </div> -->
+    <!-- <div> -->
+      <div>4 choices posible</div>
+    <div>
+      <div>
+        <label id="choice1" for="opcion1">Choice 1
+          <input type="text" id="choice" name="choice1"/>
+        </label>
+      </div>
+      <div>
+        <label id="choice2" for="opcion2">Choice 2
+          <input type="text" id="choice" name="choice2"/>
+        </label>
+      </div>
+      <div>
+        <label id="choice3" for="opcion3">Choice 3
+          <input type="text" id="choice3" name="choice3"/>
+        </label><br>
+      </div>
+      <div>
+        <label id="choice4" for="opcion4">Choice 4
+          <input type="text" id="choice4" name="choice4"/>
+        </label><br>
+      </div>
+    </div>
+    <div>
+      <label id="rightAnswer" for="rightAnswer">right answer
+        <input type="text" id="rightAnswer" name="rightAnswer"/> 
+      </label><br>
+
+      <button type="button">
+        submit
+      </button>
+      <!-- <input type="button" value="submit" name="submit"/> -->
+    <!-- </div>  -->
+  </form>
+</div>
+
+
+  <div id="quiz">
+    <h1>Encuesta</h1>
+    <hr/>
+  <h2 id="question">Question</h2>
+  
+  <div id="choices"></div>
+  
+  <hr/>
+  
+  <footer>
+    <p id="progress"></p>
+  </footer>
+  </div>
+  <script src="app.js" type="module"></script>
+  <script src="questions.js" type="module"></script>
+</body>
+</html>
