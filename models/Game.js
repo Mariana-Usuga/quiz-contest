@@ -5,7 +5,7 @@ export class Game {
   score = 0;
   nextQuestion = true;
   level = 1;
-  question = ""
+  question = {};
 
   constructor(questions){
     this.questions= questions

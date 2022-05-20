@@ -1,6 +1,7 @@
 import { random } from "../data/data.js";
 
 export class Form {
+  numberQuestion = 0;
   questionData = {};
   
     constructor(form, inputs, buttonSubmit){
@@ -22,7 +23,10 @@ export class Form {
         responses: [formData.get('choice1'), formData.get('choice2'), formData.get('choice3'), formData.get('choice4')]
       }
       this.questionData = question
+      this.numberQuestion++;
       this.inputs.forEach(input => input.value = '')
     }
+
+    
 }  
 

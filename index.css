@@ -1,7 +1,10 @@
-/* .wrapper {
-  display: none;
+.wrapper {
+  visibility: hidden;
+
 }
 
 #quiz{
-  display: none;
-} */
+  position: absolute;
+  top: 30px;
+  visibility: hidden;
+} 

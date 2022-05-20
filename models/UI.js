@@ -1,41 +1,42 @@
 // import { getInfo } from "./questions.js";
 
 export class UI {
+  showForm = false;
   constructor(){}
 
   showInputs(){
+    console.log('entra show from  ')
     const btn = document.getElementById("configure");
-    const btnPlay = document.getElementById("play");
-    const form = document.getElementById("form");
-    const qui = document.getElementById("quiz");
+    const form = document.querySelector('.wrapper');
+    const game = document.getElementById("quiz");
     btn.addEventListener('click', () => {
-      if(form.style.display === "block"){
-        form.style.display = "none"
+      if(form.style.visibility === "visible"){
+        form.style.visibility = "hidden"
       }else{
-        form.style.display = "block"
-        // getInfo();
+        form.style.visibility = "visible"
+        game.style.visibility = "hidden"
       }
     })
+
+    const btnPlay = document.getElementById("play");
     btnPlay.addEventListener('click', () => {
-      if(qui.style.display === "block"){
-        qui.style.display = "none"
+      if(game.style.visibility === "visible"){
+        game.style.visibility = "hidden"
       }else{
-        qui.style.display = "block"
+        game.style.visibility = "visible"
+        form.style.visibility = "hidden"
       }
     })
   }
 
   showQuestion(text){
     const questionTitle = document.getElementById('question');
-    console.log('te', text  )
     questionTitle.innerHTML = text;
   }
 
   showAnswers(choices, callback){
     const choicesContainer = document.getElementById('choices');
     choicesContainer.innerHTML = ""
-
-    console.log('choi', choices)
 
     for(let i=0; i <choices.length; i ++){
       const btn = document.createElement('button')
@@ -71,11 +72,17 @@ export class UI {
     element.innerHTML = quizEnd
   }
 
-  getForm(){
-    const wrapper = document.querySelector('.wrapper'),
-          form = wrapper.querySelectorAll('.form'),
-          inputs = document.querySelectorAll('input'),
-          buttonSubmit = document.querySelector('button[type=button]');
-    return { form, inputs, buttonSubmit }
+  showQuestionsEntered(current, total){
+    console.log('entraa', current)
+    const numberQuestion =  `
+    <h2>You have entered: ${current} asks, total: ${total}</h2>
+    `
+    const ele = document.getElementById('numberQueEntered');
+    const buttonSubmit = document.querySelector('button[type=button]');
+
+    buttonSubmit?.addEventListener('click', () => {
+      ele.innerHTML = numberQuestion;
+    }, false)
   }
-}
+
+ }
