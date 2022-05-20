@@ -1,30 +1,31 @@
-import { Quiz } from "./Quiz.js";
-import { questions } from "./questions.js";
-import { UI } from './UI.js'
+import { Game } from "./models/Game.js";
+import { questions } from "./data/questions.js";
+import { UI } from './models/UI.js'
 
 //console.log('ques', questions)
 
-function renderPage (quiz, ui){
-  console.log('fina', quiz.hasEnded())
-  if(quiz.hasEnded()){
-    ui.showScore(quiz.score)
+function renderPage (game, ui){
+  console.log('fina', game.hasEnded())
+  if(game.hasEnded()){
+    ui.showScore(game.score)
   }else{
-    quiz.getQuestionCategory()
-    ui.showQuestion(quiz.getQuestion().question)
-    ui.showAnswers(quiz.getQuestion().responses, (answer) => {
-      quiz.guess(answer)
-      if(!quiz.nextQuestion){
-        ui.showGameOver(quiz.score)
+    game.getQuestionCategory()
+    ui.showQuestion(game.getQuestion().question)
+    ui.showAnswers(game.getQuestion().responses, (answer) => {
+      game.guess(answer)
+      if(!game.nextQuestion){
+        ui.showGameOver(game.score)
       }
-    renderPage(quiz, ui)
+    renderPage(game, ui)
   })
-  ui.showProgress(quiz.questionIndex + 1, quiz.questions.length)
+  ui.showProgress(game.questionIndex + 1, game.questions.length)
   }
 }
 
 function main () {
-  const quiz = new Quiz(questions);
+  const game = new Game(questions);
   const ui = new UI()
+  // ui.getForm()
   // ui.showInputs()
   // renderPage(quiz, ui)
   // const quiz2 = new Quiz(questions);

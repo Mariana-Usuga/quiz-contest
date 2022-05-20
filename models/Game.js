@@ -1,6 +1,6 @@
-import { random } from "./data.js";
+import { random } from "../data/data.js";
 
-export class Quiz {
+export class Game {
   questionIndex = 0;
   score = 0;
   nextQuestion = true;

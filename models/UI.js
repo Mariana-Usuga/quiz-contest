@@ -70,4 +70,12 @@ export class UI {
 
     element.innerHTML = quizEnd
   }
+
+  getForm(){
+    const wrapper = document.querySelector('.wrapper'),
+          form = wrapper.querySelectorAll('.form'),
+          inputs = document.querySelectorAll('input'),
+          buttonSubmit = document.querySelector('button[type=button]');
+    return { form, inputs, buttonSubmit }
+  }
 }
