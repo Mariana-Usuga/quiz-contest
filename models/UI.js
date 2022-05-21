@@ -5,7 +5,7 @@ export class UI {
   constructor(){}
 
   showInputs(){
-    console.log('entra show from  ')
+    // console.log('entra show from  ')
     const btn = document.getElementById("configure");
     const form = document.querySelector('.wrapper');
     const game = document.getElementById("quiz");

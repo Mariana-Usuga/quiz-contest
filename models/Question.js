@@ -2,17 +2,17 @@ import { data } from  '../data/data.js';
 
 export class Question {
 
-  constructor(id, difficultyLevel, question, category, rightResponse, responses){
+  constructor(id, level, question, category, answer, choices){
     this.id= id; 
-    this.difficultyLevel= difficultyLevel;
+    this.level= level;
     this.question= question;
     this.category= category;
-    this.rightResponse= rightResponse;
-    this.responses= responses
+    this.answer= answer;
+    this.choices= choices
   }
   
   correctAnswer(choice){
-    return choice === this.rightResponse;
+    return choice === this.answer;
   }
 
   

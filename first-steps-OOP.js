@@ -49,22 +49,4 @@ const Moviee1 = {
     }
   }
   
-  const Movie1  = new Movie("cryer", 1)
-  const Movie2  = new Movie("batman", 2)
-  //const Serie1 = new Serie("elite", 03);
-  //const Serie2 = new Serie("elite", 03, 80)
   
-  
-  //console.log('Movie1', Movie1)
-  //console.log('Movie2', Movie2)
-  //console.log('Movie2 repr', Movie2.reproducir())
-  //console.log('Movie2 get name', Movie2.getName)
-  //Movie2.setName = "cambiar peli"
-  //console.log('Movie2 set name', Movie2.getName)
-  //console.log('Movie1 set name', Movie1.getName)
-  //console.log('Serie1 get caps', Serie1.getCaps)
-  //Serie1.setCaps = 1
-  //console.log('Serie1 set caps', Serie1.getCaps)
-  //console.log('Serie1', Serie1)
-  //console.log('Serie1 repr', Serie1.reproducirCapitulo())
-  //console.log('Serie2', Serie2)

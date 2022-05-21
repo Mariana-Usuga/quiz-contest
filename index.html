@@ -8,6 +8,21 @@
   <title>Title of the page</title>
 </head>
 <body>
+  <!-- <div class="wrapper"> -->
+    <!-- <h2 id="writeAsks"></h2> -->
+    <form class="formDataUser" action="">
+        <div>
+          <label id="name" for="name">Name
+            <input type="text" id="name" name="name"/>
+          </label>
+        </div>
+        <button id="btnDataUser" type="button">
+          submit
+        </button>
+    </form>
+    <!-- <div id="numberQueEntered"></div> -->
+  <!-- </div> -->
+
   <div id="btns">
     <button id="play" class="btnPlay">Play!!</button>
     <button id="configure" class="btnConfigure">Configure!!</button>
@@ -20,7 +35,7 @@
       <label for="category" id="category">Category
         <input type="text" id="category" name="category"/>
       </label>
-      <label for="pregunta" id="ask">Ask
+      <label for="pregunta" id="ask">Question
         <input type="text" id="pregunta" name="ask"/>
       </label>
     <!-- </div> -->
@@ -78,6 +93,8 @@
   </div>
 
   <script src="app.js" type="module"></script>
+  <!-- <script src="./node_modules/axios/dist/axios.min.js"></script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- <script src="questions.js" type="module"></script> -->
 </body>
 </html>

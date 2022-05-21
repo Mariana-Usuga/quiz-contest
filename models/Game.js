@@ -2,7 +2,7 @@ import { random } from "../data/data.js";
 
 export class Game {
   questionIndex = 0;
-  score = 0;
+  // score = 0;
   nextQuestion = true;
   level = 1;
   question = {};
@@ -21,12 +21,12 @@ export class Game {
       return
     }
     for(let i=0; i<this.questions.length; i++){
-      if(this.level === this.questions[i].difficultyLevel){
+      if(this.level === this.questions[i].level){
         arrayCategories = [...arrayCategories, this.questions[i]]
       }
     }
     const nose = arrayCategories[random(0,1)]
-    console.log(nose)
+    console.log("en game. getQuestionIndex",nose)
     this.question = arrayCategories[random(0,1)]
   }
 
@@ -36,7 +36,7 @@ export class Game {
 
   guess(answer){
     if(this.getQuestion().correctAnswer(answer)){
-      this.score += 5;
+      // this.score += 5;
       this.level++;
     }else{
       this.nextQuestion= false;

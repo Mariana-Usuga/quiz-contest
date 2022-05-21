@@ -1,15 +1,31 @@
 import { Question } from "../models/Question.js";
-import { data, random } from './data.js';
+// import { data, random } from './data.js';
 import { Form } from "../models/Form.js";
+// import { getQuestions } from "../service/questionService.js";
 
-const  dataUser = []
+// const dataUser = []
+const URL_BASE = process.env.REACT_APP_API_URL_BASE;
+const minQuestions = 25
+let questions = []
 // const objcts = []
 
-const questions = data.map(question => new Question(question.id, question.difficultyLevel, 
-  question.question, question.category, question.rightResponse, question.responses));
+function getQuestions () {
+  axios.get('http://localhost:8080/api/question')
+  .then(response => {
+   const questionsRes = response.data;
+   console.log('reee', questionsRes)
+   questions = questionsRes.map(question => new Question(question._id, question.level, 
+  question.question, question.category, question.answer, question.choices));
+ })
+  .catch(error => console.error(error));
+  return questions;
+ };
+
+//  getQuestions()
+
 
 /*-----------------------------------------------GET DATA USER-------------------------------------*/
-  // function getAsk(){
+  function getUserQuestions(){
     let amountAsks = 0;
     const wrapper = document.querySelector('.wrapper'),
     form = wrapper.querySelectorAll('.form'),
@@ -20,20 +36,20 @@ const questions = data.map(question => new Question(question.id, question.diffic
     document.addEventListener('DOMContentLoaded', () => {
       buttonSubmit?.addEventListener('click', () => {
         f.getData()
-        console.log('ob', f.questionData)
-        const q = new Question(f.questionData.id, f.questionData.difficultyLevel, f.questionData.question,
-           f.questionData.category, f.questionData.rightResponse, f.questionData.responses)
-        dataUser.push(q)
+        // console.log('ob', f.questionData)
+        const q = new Question(f.questionData.id, f.questionData.level, f.questionData.question,
+           f.questionData.category, f.questionData.answer, f.questionData.choices)
+        questions.push(q)
         amountAsks++;
 
         const numberQuestion =  `
-        <h2>You have entered: ${amountAsks} asks, total: ${25}</h2>`
+        <h2>You have entered: ${amountAsks} asks, son minino: ${minQuestions}</h2>`
         const ele = document.getElementById('numberQueEntered');
         ele.innerHTML = numberQuestion;
 
       }, false)
     }, false)
+  }
 
-
-  export { questions, dataUser, amountAsks}
+  export { getQuestions, getUserQuestions }
 

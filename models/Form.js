@@ -7,7 +7,7 @@ export class Form {
     constructor(form, inputs, buttonSubmit){
       this.form= form;
       this.inputs= inputs;
-      this.buttonSubmit= buttonSubmit
+      this.buttonSubmit= buttonSubmit;
     }
 
     getData() {
@@ -16,11 +16,11 @@ export class Form {
 
       question = {
         id: random(1, 1000),
-        difficultyLevel: 1,
+        level: 1,
         question: formData.get('ask'),
         category: formData.get('category'),
-        rightResponse: formData.get('rightAnswer'),
-        responses: [formData.get('choice1'), formData.get('choice2'), formData.get('choice3'), formData.get('choice4')]
+        answer: formData.get('rightAnswer'),
+        choices: [formData.get('choice1'), formData.get('choice2'), formData.get('choice3'), formData.get('choice4')]
       }
       this.questionData = question
       this.numberQuestion++;

@@ -8,3 +8,11 @@
   top: 30px;
   visibility: hidden;
 } 
+
+.btnPlay{
+  visibility: hidden;
+}
+
+.btnConfigure{
+  visibility: hidden;
+}
