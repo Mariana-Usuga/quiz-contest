@@ -4,16 +4,21 @@ import { Form } from "../models/Form.js";
 // import { getQuestions } from "../service/questionService.js";
 
 // const dataUser = []
+// const URL_BASE = process.env.REACT_APP_API_URL_BASE;
 const URL_BASE = process.env.REACT_APP_API_URL_BASE;
+// const { URL_BASE } = process.env;
+console.log('urr', URL_BASE)
+
+//  JSON.stringify(process.env.URL_BASE)
 const minQuestions = 25
 let questions = []
 // const objcts = []
 
 function getQuestions () {
-  axios.get('http://localhost:8080/api/question')
+  axios.get(`https://quizcontest22.herokuapp.com/api/question`)
   .then(response => {
    const questionsRes = response.data;
-   console.log('reee', questionsRes)
+  //  console.log('reee', questionsRes)
    questions = questionsRes.map(question => new Question(question._id, question.level, 
   question.question, question.category, question.answer, question.choices));
  })
