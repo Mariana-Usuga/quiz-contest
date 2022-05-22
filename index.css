@@ -3,6 +3,10 @@
 
 }
 
+.formDataUser{
+  display: block;
+}
+
 #quiz{
   position: absolute;
   top: 80px;
@@ -11,8 +15,11 @@
 
 .btnPlay{
   visibility: hidden;
+  /* display: block; */
 }
 
 .btnConfigure{
   visibility: hidden;
+  /* display: block; */
 }
+

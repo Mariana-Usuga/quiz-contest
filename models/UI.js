@@ -1,31 +1,56 @@
 // import { getInfo } from "./questions.js";
+import { postPlayer } from "../service/playerService.js";
+import { Player } from "./Player.js";
 
 export class UI {
   showForm = false;
   constructor(){}
 
-  showInputs(){
-    // console.log('entra show from  ')
+  // getData(){
+    // let showForm = false;
+  //   const formDataUser = document.querySelectorAll('.formDataUser'),
+  //   buttonSubmitUser = document.getElementById('btnDataUser');
+
+  //   document.addEventListener('DOMContentLoaded', () => {
+  //   buttonSubmitUser?.addEventListener('click', () => {
+  //     const formData = new FormData(formDataUser[0]);
+
+  //     if(formData.get('name') === ""){
+  //       console.log('entra iffffffff')
+  //       const aler = document.getElementById('alert')
+  //       const quizEnd = `
+  //       <h1>Enter name!!!</h1>
+  //       `
+  //       aler.innerHTML = quizEnd;
+  //     }else{
+  //       postPlayer({name:formData.get('name')});
+  //       const ele = document.getElementById('configure');
+  //       ele.style.visibility = "visible";
+  //       const ele2 = document.getElementById('play');
+  //       ele2.style.visibility = "visible";
+  //       formDataUser[0].style.display ="none";
+  //       // showForm = true;
+  //       // return playerObj;
+  //     }
+  //   }, false)
+  // }, false)
+  // return showForm;
+// }
+
+  showPlayOrConfigure(){
     const btn = document.getElementById("configure");
     const form = document.querySelector('.wrapper');
     const game = document.getElementById("quiz");
+    const btnPlay = document.getElementById("play");
+
     btn.addEventListener('click', () => {
-      if(form.style.visibility === "visible"){
-        form.style.visibility = "hidden"
-      }else{
-        form.style.visibility = "visible"
-        game.style.visibility = "hidden"
-      }
+      btnPlay.style.display = "none";
+      form.style.visibility = "visible";
     })
 
-    const btnPlay = document.getElementById("play");
     btnPlay.addEventListener('click', () => {
-      if(game.style.visibility === "visible"){
-        game.style.visibility = "hidden"
-      }else{
-        game.style.visibility = "visible"
-        form.style.visibility = "hidden"
-      }
+      btn.style.display = "none";
+      game.style.visibility = "visible";
     })
   }
 
@@ -59,7 +84,7 @@ export class UI {
 
   showProgress(currentIndex, total){
     const element = document.getElementById("progress");
-    element.innerHTML = `Points ${currentIndex}`
+    element.innerHTML = `Has respondi ${currentIndex - 1} preguntas, te faltan ${total}`
   }
 
   showGameOver(score){

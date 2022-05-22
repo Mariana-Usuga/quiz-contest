@@ -1,61 +1,79 @@
 import { Game } from "./models/Game.js";
 import { getQuestions, getUserQuestions } from "./data/questions.js";
 import { UI } from './models/UI.js';
-import { Player } from './models/Player.js';
-import { random } from './data/data.js'
+import { Player } from './models/Player.js'
 
-function renderPage (game, ui){
+// const game = new Game(questions);
+
+function renderFormUser(ui){
+  ui.showPlayOrConfigure();
+  // console.log('ftgvyhbjnkm',ui.getData());
+}
+
+function renderPage (playerObj, game, ui){
+  // console.log('game', game)
   if(game.hasEnded()){
-    ui.showScore(game.score)//opcion valida
+    ui.showScore(playerObj.score)
+    // ui.showScore(game.score)//opcion valida
   }else{
-    game.getQuestionCategory()
+    // const question = game.getQuestion()
+    // console.log(game.getQuestion())
+    game.searchQuestion();
     ui.showQuestion(game.getQuestion().question)
+// console.log('choi', game.getQuestion().choices )
     ui.showAnswers(game.getQuestion().choices, (answer) => {
-      game.guess(answer)
-      if(!game.nextQuestion){
-        ui.showGameOver(game.score)
-      }
-    renderPage(game, ui)
+      playerObj.guess(answer, game.getQuestion())
+      // game.guess(answer)
+      // game.nextQuestion()
+      // console.log('next', !playerObj.nextQuestion)
+      // if(!playerObj.nextQuestion){
+      //   ui.showGameOver(playerObj.getScore())
+      // }
+    renderPage(playerObj, game, ui)
   })
-  ui.showProgress(game.questionIndex + 1, game.questions.length)
+
+  // ui.showProgress(game.questionIndex + 1, game.questions.length)
   // ui.showQuestionsEntered(amountAsks, 25);
   }
 }
 
 function main () { 
-  const formDataUser = document.querySelectorAll('.formDataUser'),
-  inputs = document.querySelectorAll('input'),
-  buttonSubmit = document.getElementById('btnDataUser');
+  const ui = new UI()
+  let playerObj = "";
+  renderFormUser(ui)
 
-  const formData = new FormData(formDataUser[0]);
-  
-  const player = new Player(random(1, 1000), formData.get('name'));
+  const formDataUser = document.querySelectorAll('.formDataUser'),
+  buttonSubmitUser = document.getElementById('btnDataUser');
 
   document.addEventListener('DOMContentLoaded', () => {
-    buttonSubmit?.addEventListener('click', () => {
-      console.log('entra en subbbbbb')
-      gameStart();
+  buttonSubmitUser?.addEventListener('click', () => {
+    const formData = new FormData(formDataUser[0]);
+
+    if(formData.get('name') === ""){
+      const aler = document.getElementById('alert')
+      const quizEnd = `
+      <h1>Enter name!!!</h1>
+      `
+      aler.innerHTML = quizEnd;
+    }else{
+      playerObj = new Player(1, formData.get('name'), 0);
+
       const ele = document.getElementById('configure');
       ele.style.visibility = "visible";
       const ele2 = document.getElementById('play');
       ele2.style.visibility = "visible";
-    }, false)
+      formDataUser[0].style.display ="none";
+    }
   }, false)
+}, false)
 
 
 
-
-
-
-function gameStart(){
-  const ui = new UI()
-  ui.showInputs();
   const ele2 = document.getElementById("play")
-  ele2.addEventListener('click', async () => {
-    const questions = await getQuestions();
-      console.log('reees in appp', questions)
-        const game = new Game(questions);
-      renderPage(game, ui)
+  ele2.addEventListener('click', () => {
+    const loadedQuestions = getQuestions();
+        const game = new Game(loadedQuestions);
+        renderPage(playerObj, game, ui)
   }) 
 
   const element = document.getElementById('jugar')
@@ -67,9 +85,8 @@ function gameStart(){
     form.style.visibility = "hidden"
     const questions = getUserQuestions();
     const game = new Game(questions);
-    renderPage(game, ui)
+    renderPage(playerObj, game, ui)
   })
-}
 }
 
 main()
