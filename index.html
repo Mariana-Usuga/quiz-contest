@@ -8,88 +8,82 @@
   <title>Title of the page</title>
 </head>
 <body>
-  <!-- <div class="wrapper"> -->
-    <!-- <h2 id="writeAsks"></h2> -->
-    <form class="formDataUser" action="">
-        <div>
-          <label id="name" for="name">Name
-            <input type="text" id="name" name="name"/>
-          </label>
-        </div>
-        <button id="btnDataUser" type="button">
-          submit
-        </button>
-        <div id="alert"></div>
-    </form>
-    <!-- <div id="numberQueEntered"></div> -->
-  <!-- </div> -->
 
+  <form class="formDataUser" action="">
+    <label id="name" for="name">
+      Nombre:
+      <input type="text" id="name" name="name" placeholder="Ingresa tu nombre"/>
+    </label>
+    <button  id="btnDataUser" type="button">
+      Enviar
+    </button>
+    <div id="alert"></div>
+  </form>
+  
   <div id="btns">
-    <button id="play" class="btnPlay">Play!!</button>
-    <button id="configure" class="btnConfigure">Configure!!</button>
+    <div id="containerplay">
+      <h4>Por pregunta que respondas correctamente te ganas 5 monedas</h4>
+    </div>
+      <button type="button" id="btnPlay" class="btnPlay">Jugar!!</button>
+    <button id="configure" class="btnConfigure">Configurar Juego!!</button>
   </div>
-
-<div class="wrapper">
-  <h2 id="writeAsks"></h2>
-  <form class="form" action="">
-    <!-- <div> -->
-      <select id="category">
+  
+  <div class="wrapper">
+    <h2 id="writeAsks"></h2>
+    <form class="form" action="">
+      <label for="category">Categoria:</label>
+      <select id="category" class="input">
         <option value="entertainment" selected="selected">Entretenimiento</option>
         <option value="art">Arte</option>
         <option value="sport">Deportes</option>
         <option value="history">Historia</option>
         <option value="science">Ciencia</option>
       </select>
-      <label for="pregunta" id="ask">Question
-        <input type="text" id="pregunta" name="ask"/>
-      </label>
-    <!-- </div> -->
-    <!-- <div> -->
-      <div>4 choices posible</div>
-    <div>
-      <div>
-        <label id="choice1" for="opcion1">Choice 1
-          <input type="text" id="choice" name="choice1"/>
+      <div class="input">
+        <label for="pregunta" id="ask">Pregunta:
+          <input type="text" id="pregunta" name="ask" placeholder="Ingresa tu pregunta"/>
         </label>
       </div>
       <div>
-        <label id="choice2" for="opcion2">Choice 2
+        <div class="title-choices">4 choices posible</div>
+        <div class="input">
+          <label id="choice1" for="opcion1">Opcion 1
+            <input type="text" id="choice" name="choice1"/>
+          </label>
+      </div>
+      <div class="input">
+        <label id="choice2" for="opcion2">Opcion 2
           <input type="text" id="choice" name="choice2"/>
         </label>
       </div>
-      <div>
-        <label id="choice3" for="opcion3">Choice 3
+      <div class="input">
+        <label id="choice3" for="opcion3">Opcion 3
           <input type="text" id="choice3" name="choice3"/>
         </label><br>
       </div>
-      <div>
-        <label id="choice4" for="opcion4">Choice 4
+      <div class="input">
+        <label id="choice4" for="opcion4">Opcion 4
           <input type="text" id="choice4" name="choice4"/>
         </label><br>
       </div>
     </div>
-    <div>
-      <label id="rightAnswer" for="rightAnswer">right answer
+    <div class="input">
+      <label id="rightAnswer" for="rightAnswer">Respuesta correcta:
         <input type="text" id="rightAnswer" name="rightAnswer"/> 
       </label><br>
 
-      <button type="button" id="submit">
-        submit
+      <button type="button" id="submit" class="btnsubmit">
+        Enviar
       </button>
       <div id="divPlay"></div>
-      <button id="nose">nosseee</button>
-      <!-- <input type="button" value="submit" name="submit"/> -->
-    <!-- </div>  -->
   </form>
   <div id="numberQueEntered"></div>
-  <!-- <div id="e">eeeeeeeeeeeeeee</div> -->
 </div>
 
   <div id="quiz">
-    <h1>Encuesta</h1>
+    <h1>Preguntas</h1>
     <hr/>
   <h2 id="question">Question</h2>
-  
   <div id="choices"></div>
   
   <hr/>
@@ -101,9 +95,7 @@
   </div>
 
   <script src="app.js" type="module"></script>
-  <!-- <script src="./node_modules/axios/dist/axios.min.js"></script> -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="init.js"></script>
-  <!-- <script src="questions.js" type="module"></script> -->
 </body>
 </html>

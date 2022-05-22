@@ -1,6 +1,3 @@
-// import { getInfo } from "./questions.js";
-import { postPlayer } from "../service/playerService.js";
-import { Player } from "./Player.js";
 import { questionsUser } from '../data/questions.js'
 
 export class UI {
@@ -8,10 +5,11 @@ export class UI {
   constructor(){}
 
   showPlayOrConfigure(){
-    const btn = document.getElementById("configure");
-    const form = document.querySelector('.wrapper');
-    const game = document.getElementById("quiz");
-    const btnPlay = document.getElementById("play");
+    const btn = document.getElementById("configure"),
+    form = document.querySelector('.wrapper'),
+    game = document.getElementById("quiz"),
+    btnPlay = document.getElementById('btnPlay'),
+    notice = document.getElementById("containerplay");
 
     btn.addEventListener('click', () => {
       btnPlay.style.display = "none";
@@ -21,6 +19,7 @@ export class UI {
     btnPlay.addEventListener('click', () => {
       btn.style.display = "none";
       game.style.visibility = "visible";
+      notice.style.visibility = "visible"
     })
   }
 
@@ -44,39 +43,36 @@ export class UI {
 
   showScore(score){
     const quizEnd = `
-    <h1>Result</h1>
-    <h2>Your score is: ${score}</h2>
+    <h1>Ganaste!!</h1>
+    <h2>Tu puntaje es: ${score}</h2>
     `
     const element = document.getElementById('quiz')
-
     element.innerHTML = quizEnd
   }
 
   showProgress(currentIndex, total){
     const element = document.getElementById("progress");
-    element.innerHTML = `Has respondi ${currentIndex - 1} preguntas, te faltan ${total}`
+    element.innerHTML = `Has respondido ${currentIndex - 1} preguntas, te faltan ${total}`
   }
 
   showGameOver(score){
     const quizEnd = `
     <h1>Game Over</h1>
-    <h2>Your score is: ${score}</h2>
+    <h2>Tu puntaje fue: ${score}</h2>
     `
     const element = document.getElementById('quiz')
-
     element.innerHTML = quizEnd
   }
 
   showQuestionsEntered(current, total){
-    console.log('entraa', current)
     const numberQuestion =  `
-    <h2>You have entered: ${current} asks, total: ${total}</h2>
+    <h2>Has ingresado: ${current} preguntas, total: ${total}</h2>
     `
     const ele = document.getElementById('numberQueEntered');
     const buttonSubmit = document.querySelector('button[type=button]');
 
     buttonSubmit?.addEventListener('click', () => {
-      ele.innerHTML = numberQuestion;
+    ele.innerHTML = numberQuestion;
     }, false)
   }
 
@@ -88,14 +84,14 @@ export class UI {
     ele.innerHTML = coins;
   }
 
-  showBtnPlay(){
-    const btnPlay = document.getElementById('play');
-    const btn =  `
-    <button type="button" id="play">Jugar!!</button>
-    `
-    if(questionsUser.length === 2){
-      btnPlay.innerHTML = btn;
-    }
-  }
+  // showBtnPlay(){
+  //   const btnPlay = document.getElementById('play');
+  //   const btn =  `
+  //   <button type="button" id="play">Jugar!!</button>
+  //   `
+  //   if(questionsUser.length === 2){
+  //     btnPlay.innerHTML = btn;
+  //   }
+  // }
 
  }

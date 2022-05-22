@@ -1,9 +1,9 @@
-import { random } from "../data/data.js";
-import { questionsUser } from "../data/questions.js";
+import { random } from "../data/randomNumber.js";
 
 export class Game {
   questionIndex = 0;
   level = 1;
+  nextQuestion = true;
   question = {};
 
   constructor(questions){
@@ -11,7 +11,6 @@ export class Game {
   }
 
   getQuestionIndex(){
-    this.questionIndex++;
     return this.questions[this.questionIndex]
   }
 
@@ -25,7 +24,6 @@ export class Game {
     }
     
     this.question = arrayCategories[random(0,1)]
-    console.log('quess', this.question)
     this.question;
   }
 
@@ -39,14 +37,12 @@ export class Game {
   }
 
   guess(answer) {
+    console.log('guess', this.getQuestionIndex());
     if (this.getQuestionIndex().correctAnswer(answer)) {
+      console.log('entra guess')
       this.score++;
     }
+    this.nextQuestion=false;
     this.questionIndex++;
   }
-
-  hasEnded(){
-    return this.question.length === this.questionIndex
-  }
-
 }

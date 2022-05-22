@@ -1,4 +1,4 @@
-import { random } from "../data/data.js";
+import { random } from "../data/randomNumber.js";
 
 export class Form {
   numberQuestion = 0;
@@ -25,8 +25,6 @@ export class Form {
       this.questionData = question
       this.numberQuestion++;
       this.inputs.forEach(input => input.value = '')
-    }
-
-    
+    }  
 }  
 
