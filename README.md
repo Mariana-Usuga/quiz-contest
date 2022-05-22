@@ -11,5 +11,5 @@ Si decides configurar el juego deberas ingresar minimo 25, para despues jugar co
 
 ## Construido con 
 JavaScript
-css
+CSS
 HTML
