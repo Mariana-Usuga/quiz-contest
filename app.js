@@ -1,43 +1,54 @@
 import { Game } from "./models/Game.js";
-import { getQuestions, getUserQuestions } from "./data/questions.js";
+import { getQuestions, /*getUserQuestions*/ questionsUser } from "./data/questions.js";
 import { UI } from './models/UI.js';
 import { Player } from './models/Player.js'
 
-// const game = new Game(questions);
-
 function renderFormUser(ui){
   ui.showPlayOrConfigure();
-  // console.log('ftgvyhbjnkm',ui.getData());
 }
 
 function renderPage (playerObj, game, ui){
-  // console.log('game', game)
   if(game.hasEnded()){
-    ui.showScore(playerObj.score)
-    // ui.showScore(game.score)//opcion valida
+    return ui.showScore(playerObj.score)
   }else{
-    // const question = game.getQuestion()
-    // console.log(game.getQuestion())
-    game.searchQuestion();
-    ui.showQuestion(game.getQuestion().question)
-// console.log('choi', game.getQuestion().choices )
-    ui.showAnswers(game.getQuestion().choices, (answer) => {
-      playerObj.guess(answer, game.getQuestion())
-      // game.guess(answer)
-      // game.nextQuestion()
-      // console.log('next', !playerObj.nextQuestion)
-      // if(!playerObj.nextQuestion){
-      //   ui.showGameOver(playerObj.getScore())
-      // }
-    renderPage(playerObj, game, ui)
-  })
-
-  // ui.showProgress(game.questionIndex + 1, game.questions.length)
-  // ui.showQuestionsEntered(amountAsks, 25);
+    if(questionsUser.length != 0){
+      console.log('aquii','bla', game.getQuestionIndex().choices)
+      ui.showQuestion(game.getQuestionIndex().question)
+      ui.showAnswers(game.getQuestionIndex().choices, (answer) => {
+        // playerObj.guess(answer)
+        game.guess(answer)
+        console.log('pregutas user',questionsUser)
+        // if(!playerObj.nextQuestion){
+        //   ui.showGameOver(playerObj.getScore)        
+        // }
+      renderPage(playerObj, game, ui)
+    })
+    }else{
+      game.searchQuestion();
+      // console.log('aqquu', game.getQuestion().question, game.getQuestion().choices)
+      ui.showQuestion(game.getQuestion().question)
+      ui.showAnswers(game.getQuestion().choices, (answer) => {
+        playerObj.guess(answer, game.getQuestion())
+        game.nextLevel()
+        if(!playerObj.nextQuestion){
+          ui.showGameOver(playerObj.getScore)        
+        }
+      renderPage(playerObj, game, ui)
+    })
+    }
+  ui.showProgress(game.questionIndex + 1, 5);
+  ui.showCoins(playerObj.getScore)
   }
 }
 
-function main () { 
+function loaded(){
+  if(JSON.parse(localStorage.getItem("questions"))){
+    const form = document.querySelector('.wrapper');
+    form.style.visibility = "visible";
+  }
+}
+
+function main () {
   const ui = new UI()
   let playerObj = "";
   renderFormUser(ui)
@@ -58,6 +69,8 @@ function main () {
     }else{
       playerObj = new Player(1, formData.get('name'), 0);
 
+      localStorage.setItem("player", JSON.stringify(playerObj))
+
       const ele = document.getElementById('configure');
       ele.style.visibility = "visible";
       const ele2 = document.getElementById('play');
@@ -67,8 +80,6 @@ function main () {
   }, false)
 }, false)
 
-
-
   const ele2 = document.getElementById("play")
   ele2.addEventListener('click', () => {
     const loadedQuestions = getQuestions();
@@ -76,16 +87,19 @@ function main () {
         renderPage(playerObj, game, ui)
   }) 
 
-  const element = document.getElementById('jugar')
-  const ele3 = document.getElementById("quiz");
-  const form = document.querySelector('.wrapper');
+  const element = document.getElementById('divPlay')
 
   element.addEventListener('click', () => {
-    ele3.style.visibility = "visible"
-    form.style.visibility = "hidden"
-    const questions = getUserQuestions();
-    const game = new Game(questions);
+    const game = new Game(questionsUser);
+    console.log('clicl play', questionsUser)
     renderPage(playerObj, game, ui)
+  })
+
+  const eleme = document.getElementById('nose')
+
+  eleme.addEventListener('click', (e) => {
+    e.preventDefault()
+    console.log('clicl play', questionsUser)
   })
 }
 

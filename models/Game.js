@@ -1,9 +1,8 @@
 import { random } from "../data/data.js";
-// import { Player } from "./Player.js";
+import { questionsUser } from "../data/questions.js";
 
 export class Game {
   questionIndex = 0;
-  // nextQuestion = true;
   level = 1;
   question = {};
 
@@ -12,43 +11,42 @@ export class Game {
   }
 
   getQuestionIndex(){
+    this.questionIndex++;
     return this.questions[this.questionIndex]
   }
 
   searchQuestion(){
     let arrayCategories = []
-    // if(!this.nextQuestion){
-    //   return
-    // }
+
     for(let i=0; i<this.questions.length; i++){
       if(this.level === this.questions[i].level){
         arrayCategories = [...arrayCategories, this.questions[i]]
       }
     }
-    // const nose = arrayCategories[random(0,1)]
-    // console.log("en game. getQuestionIndex",nose)
+    
     this.question = arrayCategories[random(0,1)]
     console.log('quess', this.question)
-    return this.question;
+    this.question;
   }
 
   getQuestion(){
     return this.question;
   }
 
-  nextQuestion(){
-    // guess(){}
-    // if(this.getQuestion().correctAnswer(answer)){
-      // this.score += 5;
-      // this.level++;
-    // }else{
-      // this.nextQuestion= false;
-    // }
+  nextLevel(){
+    this.level++;
+    this.questionIndex++;
+  }
+
+  guess(answer) {
+    if (this.getQuestionIndex().correctAnswer(answer)) {
+      this.score++;
+    }
     this.questionIndex++;
   }
 
   hasEnded(){
-    return this.level === 6
+    return this.question.length === this.questionIndex
   }
 
 }

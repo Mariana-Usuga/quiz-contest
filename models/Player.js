@@ -14,6 +14,7 @@ export class Player {
   guess(answer, question){
     if(question.correctAnswer(answer)){
       this.score += 5;
+      console.log('entra todo bien')
       // this.level++;
     }else{
       this.nextQuestion= false;

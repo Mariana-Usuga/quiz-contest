@@ -1,15 +1,20 @@
 .wrapper {
   visibility: hidden;
-
+/* position: relative; */
 }
+
+/* #e{
+  position: absolute;
+  top: 0;
+} */
 
 .formDataUser{
   display: block;
 }
 
 #quiz{
-  position: absolute;
-  top: 80px;
+  /* position: absolute; */
+  /* top: 80px; */
   visibility: hidden;
 } 
 

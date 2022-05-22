@@ -33,9 +33,13 @@
   <h2 id="writeAsks"></h2>
   <form class="form" action="">
     <!-- <div> -->
-      <label for="category" id="category">Category
-        <input type="text" id="category" name="category"/>
-      </label>
+      <select id="category">
+        <option value="entertainment" selected="selected">Entretenimiento</option>
+        <option value="art">Arte</option>
+        <option value="sport">Deportes</option>
+        <option value="history">Historia</option>
+        <option value="science">Ciencia</option>
+      </select>
       <label for="pregunta" id="ask">Question
         <input type="text" id="pregunta" name="ask"/>
       </label>
@@ -69,14 +73,16 @@
         <input type="text" id="rightAnswer" name="rightAnswer"/> 
       </label><br>
 
-      <button type="button">
+      <button type="button" id="submit">
         submit
       </button>
-      <button type="button" id="jugar">jugar!!!!</button>
+      <div id="divPlay"></div>
+      <button id="nose">nosseee</button>
       <!-- <input type="button" value="submit" name="submit"/> -->
     <!-- </div>  -->
   </form>
   <div id="numberQueEntered"></div>
+  <!-- <div id="e">eeeeeeeeeeeeeee</div> -->
 </div>
 
   <div id="quiz">
@@ -90,6 +96,7 @@
   
    <footer>
     <p id="progress"></p>
+    <p id="coins"></p>
    </footer>
   </div>
 

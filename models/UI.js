@@ -1,41 +1,11 @@
 // import { getInfo } from "./questions.js";
 import { postPlayer } from "../service/playerService.js";
 import { Player } from "./Player.js";
+import { questionsUser } from '../data/questions.js'
 
 export class UI {
   showForm = false;
   constructor(){}
-
-  // getData(){
-    // let showForm = false;
-  //   const formDataUser = document.querySelectorAll('.formDataUser'),
-  //   buttonSubmitUser = document.getElementById('btnDataUser');
-
-  //   document.addEventListener('DOMContentLoaded', () => {
-  //   buttonSubmitUser?.addEventListener('click', () => {
-  //     const formData = new FormData(formDataUser[0]);
-
-  //     if(formData.get('name') === ""){
-  //       console.log('entra iffffffff')
-  //       const aler = document.getElementById('alert')
-  //       const quizEnd = `
-  //       <h1>Enter name!!!</h1>
-  //       `
-  //       aler.innerHTML = quizEnd;
-  //     }else{
-  //       postPlayer({name:formData.get('name')});
-  //       const ele = document.getElementById('configure');
-  //       ele.style.visibility = "visible";
-  //       const ele2 = document.getElementById('play');
-  //       ele2.style.visibility = "visible";
-  //       formDataUser[0].style.display ="none";
-  //       // showForm = true;
-  //       // return playerObj;
-  //     }
-  //   }, false)
-  // }, false)
-  // return showForm;
-// }
 
   showPlayOrConfigure(){
     const btn = document.getElementById("configure");
@@ -108,6 +78,24 @@ export class UI {
     buttonSubmit?.addEventListener('click', () => {
       ele.innerHTML = numberQuestion;
     }, false)
+  }
+
+  showCoins(current){
+    const coins =  `
+    <h2>Cantidad de monedas: ${current}</h2>
+    `
+    const ele = document.getElementById('coins');
+    ele.innerHTML = coins;
+  }
+
+  showBtnPlay(){
+    const btnPlay = document.getElementById('play');
+    const btn =  `
+    <button type="button" id="play">Jugar!!</button>
+    `
+    if(questionsUser.length === 2){
+      btnPlay.innerHTML = btn;
+    }
   }
 
  }
